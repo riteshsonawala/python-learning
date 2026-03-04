@@ -11,5 +11,8 @@ build/
 # IDE
 .idea/
 
+# Environment variables
+.env
+
 # OS
 .DS_Store

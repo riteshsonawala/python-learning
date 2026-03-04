@@ -12,22 +12,22 @@ trades = [
     {"symbol": "GOOGL", "quantity": 30,  "price": 141.00},
 ]
 
-unique_symbols : set[str] = set()
+
 total_value : float = 0.0
 most_expensive_trade = {"symbol": "", "quantity": 0, "price": 0.0}
 grouped_trades : dict[str, list] = {}
 
+unique_symbols = {trade["symbol"] for trade in trades}
+total_value = sum([trade["quantity"] * trade["price"] for trade in trades])
 for trade in trades:
-    unique_symbols.add(trade["symbol"])
-    total_value += trade["quantity"] * trade["price"]
+    # total_value += trade["quantity"] * trade["price"]
     if trade["quantity"] * trade["price"] > most_expensive_trade["price"] * most_expensive_trade["quantity"]:
         most_expensive_trade = trade
 
     grouped_trades.setdefault(trade["symbol"], []).append(trade)
 
 
-for symbol in unique_symbols:
-    print(symbol)
+print(unique_symbols)
 print(total_value)
 print(most_expensive_trade)
 
