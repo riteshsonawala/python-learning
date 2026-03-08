@@ -1,5 +1,6 @@
 import asyncio
 
+
 async def fetch_data() -> str:
     await asyncio.sleep(1)
     return "Hello world!"
