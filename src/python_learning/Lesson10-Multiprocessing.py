@@ -20,3 +20,22 @@ if __name__ == "__main__":    # REQUIRED for multiprocessing on Mac/Windows
 
     print(f"Results: {results}")
     print(f"Time: {time.time() - start:.1f}s")
+
+
+# Is your task I/O bound?
+# (API calls, DB queries, network)
+#         │
+#         ├── YES → Are all your libraries async-compatible?
+#         │              │
+#         │              ├── YES → asyncio ✅ (LangGraph, httpx, etc)
+#         │              │
+#         │              └── NO  → asyncio + run_in_executor ✅
+#         │                        (wrap blocking libs in thread pool)
+#         │
+#         └── NO → Is it CPU bound?
+#                         │
+#                         ├── YES → multiprocessing or ProcessPoolExecutor ✅
+#                         │         (true parallelism, bypasses GIL)
+#                         │
+#                         └── numpy/pytorch? → they handle it internally ✅
+#                                              (C extensions release GIL)
