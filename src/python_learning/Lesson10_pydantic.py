@@ -11,5 +11,6 @@ class User(BaseModel):
 if __name__ == "__main__":
     user = User(name="Alice", age=30)
     print(user.greet())
-    user = User(name="Bob", age="Twenty-five")
-    print(user.greet())
+    # below fails
+    # user = User(name="Bob", age="Twenty-five")
+    # print(user.greet())
